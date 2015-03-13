@@ -22,27 +22,28 @@ int RosMediaDeviceManager::GetCapabilities()
   return cricket::VIDEO_RECV | cricket::VIDEO_SEND; // AUDIO_SEND | AUDIO_RECV
 }
 
-bool RosMediaDeviceManager::GetAudioInputDevices(std::vector<cricket::Device>* devices)
-{
-  //TODO: implement
-  return false;
-}
-bool RosMediaDeviceManager::GetAudioOutputDevices(std::vector<cricket::Device>* devices)
-{
-  //TODO: implement
-  return false;
-}
+//prevent overriding implimentation by LinuxDeviceManager
+// bool RosMediaDeviceManager::GetAudioInputDevices(std::vector<cricket::Device>* devices)
+// {
+//   //TODO: implement
+//   return false;
+// }
+// bool RosMediaDeviceManager::GetAudioOutputDevices(std::vector<cricket::Device>* devices)
+// {
+//   //TODO: implement
+//   return false;
+// }
 
-bool RosMediaDeviceManager::GetAudioInputDevice(const std::string& name, cricket::Device* out)
-{
-  //TODO: implement
-  return false;
-}
-bool RosMediaDeviceManager::GetAudioOutputDevice(const std::string& name, cricket::Device* out)
-{
-  //TODO: implement
-  return false;
-}
+// bool RosMediaDeviceManager::GetAudioInputDevice(const std::string& name, cricket::Device* out)
+// {
+//   //TODO: implement
+//   return false;
+// }
+// bool RosMediaDeviceManager::GetAudioOutputDevice(const std::string& name, cricket::Device* out)
+// {
+//   //TODO: implement
+//   return false;
+// }
 
 bool RosMediaDeviceManager::GetVideoCaptureDevices(std::vector<cricket::Device>* devs)
 {

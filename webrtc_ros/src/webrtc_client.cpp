@@ -7,6 +7,8 @@
 #include "talk/media/devices/devicemanager.h"
 #include "talk/app/webrtc/videosourceinterface.h"
 
+#include "talk/media/devices/linuxdevicemanager.h"
+
 namespace webrtc_ros
 {
 
@@ -216,6 +218,24 @@ void WebrtcClient::handle_message(const async_web_server_cpp::WebsocketMessage& 
         ROS_DEBUG_STREAM("Subscribing to ROS topic: " << message.subscribed_video_topic);
         cricket::Device device(message.subscribed_video_topic, message.subscribed_video_topic);
         cricket::VideoCapturer* capturer = ros_media_device_manager_.CreateVideoCapturer(device);
+
+        //get audio devices
+        // cricket::DeviceManager deviceManager;
+         std::vector<cricket::Device> devices;
+
+         ros_media_device_manager_.GetAudioInputDevices(&devices);
+ 
+        // if(devices.size()>0)    
+        //    ROS_DEBUG_STREAM("System Audio devices: " << devices.front().name);
+        // else
+        //    ROS_DEBUG_STREAM("System Audio devices: no devices" );
+
+         rtc::scoped_refptr<webrtc::AudioTrackInterface> audio_track(
+            peer_connection_factory_->CreateAudioTrack("audio_label",
+              peer_connection_factory_->CreateAudioSource(NULL))
+          );
+         last_stream_->AddTrack(audio_track);
+        //
 
         rtc::scoped_refptr<webrtc::VideoTrackInterface> video_track(
           peer_connection_factory_->CreateVideoTrack(

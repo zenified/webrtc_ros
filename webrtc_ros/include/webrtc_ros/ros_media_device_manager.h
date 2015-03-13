@@ -7,10 +7,12 @@
 #include <ros/ros.h>
 #include <image_transport/image_transport.h>
 
+#include "talk/media/devices/linuxdevicemanager.h"
+
 namespace webrtc_ros
 {
 
-class RosMediaDeviceManager : public cricket::DeviceManagerInterface
+class RosMediaDeviceManager : public cricket::LinuxDeviceManager
 {
 public:
   RosMediaDeviceManager(image_transport::ImageTransport it);
@@ -21,11 +23,11 @@ public:
 
   virtual int GetCapabilities();
 
-  virtual bool GetAudioInputDevices(std::vector<cricket::Device>* devices);
-  virtual bool GetAudioOutputDevices(std::vector<cricket::Device>* devices);
+  // virtual bool GetAudioInputDevices(std::vector<cricket::Device>* devices);
+  // virtual bool GetAudioOutputDevices(std::vector<cricket::Device>* devices);
 
-  virtual bool GetAudioInputDevice(const std::string& name, cricket::Device* out);
-  virtual bool GetAudioOutputDevice(const std::string& name, cricket::Device* out);
+  // virtual bool GetAudioInputDevice(const std::string& name, cricket::Device* out);
+  // virtual bool GetAudioOutputDevice(const std::string& name, cricket::Device* out);
 
   virtual bool GetVideoCaptureDevices(std::vector<cricket::Device>* devs);
   virtual bool GetVideoOutputDevices(std::vector<cricket::Device>* devs);
